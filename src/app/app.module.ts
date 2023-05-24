@@ -12,6 +12,7 @@ import {HelpComponent} from './component/help/help.component';
 import {HomeComponent} from './home/home.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {RouterModule} from "@angular/router";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
   ],
   exports: [
     FormsModule

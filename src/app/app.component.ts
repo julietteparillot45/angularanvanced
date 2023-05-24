@@ -7,7 +7,7 @@ import { Subscriber } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent{
   title = 'AngularCRM';
    c: Array<Subscriber<number>> | undefined;
 constructor(private demoObservableService: DemoObservableService ) {
@@ -31,7 +31,7 @@ constructor(private demoObservableService: DemoObservableService ) {
       },
     }
     );
-    this.c = [...this.c, d]; 
+
   }
   demoObservableWithPIPE(): void {
     const c  = this.demoObservableService.getObservable().pipe(
@@ -49,10 +49,5 @@ constructor(private demoObservableService: DemoObservableService ) {
     );
   }
 
-  ngOnDestroy(): void { 
-    console.log('destroy');
-  this.demoObservableService.getObservable().complete();
-
-  }
 
 }
