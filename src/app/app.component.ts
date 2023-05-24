@@ -1,16 +1,19 @@
-import {Component, inject} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import { DemoObservableService } from './common/demo-observable.service';
-
+import { map, finalize ,take} from 'rxjs/operators';
+import { Subscriber } from 'rxjs';
 @Component({
   selector: 'crm-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy{
   title = 'AngularCRM';
-  
+   c: Array<Subscriber<number>> | undefined;
 constructor(private demoObservableService: DemoObservableService ) {
-  this.demoObservable();
+  this.demoObservableWithNExt();
+  this.demoObservableWithPIPE();
+
 }
 
 
@@ -19,8 +22,8 @@ constructor(private demoObservableService: DemoObservableService ) {
 
   }
 
-  demoObservable(): void {
-    this.demoObservableService.getObservable().subscribe(
+  demoObservableWithNExt(): void {
+    const d  = this.demoObservableService.getObservable().subscribe(
     {
       next: (value: number) => {console.log('next ', value);},
       complete() {
@@ -28,6 +31,28 @@ constructor(private demoObservableService: DemoObservableService ) {
       },
     }
     );
+    this.c = [...this.c, d]; 
   }
+  demoObservableWithPIPE(): void {
+    const c  = this.demoObservableService.getObservable().pipe(
+      map((i)=> {
+        console.log ('map  ', i)
+        return i; 
+      }), 
   
+      finalize(()=> console.log('finalize'))
+      
+    ).subscribe((x: number)=>{
+
+      console.log('subscribe   ', x); 
+    }
+    );
+  }
+
+  ngOnDestroy(): void { 
+    console.log('destroy');
+  this.demoObservableService.getObservable().complete();
+
+  }
+
 }
