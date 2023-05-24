@@ -15,6 +15,9 @@ import {RouterModule} from "@angular/router";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JWTInterceptorService } from './common/jwtinterceptor.service';
 import { PhonePipe } from './common/phone.pipe';
+import { ConsumerListeComponent } from './consumer/consumer-liste/consumer-liste.component';
+import { UnsubscribeComponentComponent } from './unsubscribe-component/unsubscribe-component.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { PhonePipe } from './common/phone.pipe';
     LoginComponent,
     HelpComponent,
     HomeComponent,
-    PhonePipe, 
+    PhonePipe,
+    ConsumerListeComponent,
+    UnsubscribeComponentComponent, 
     
   ],
   imports: [
@@ -35,7 +40,8 @@ import { PhonePipe } from './common/phone.pipe';
     BrowserAnimationsModule,
     AppMaterialModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   exports: [
     FormsModule, 

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhonePipe implements PipeTransform {
 
-  transform(phone: string, ...args: unknown[]): unknown {
+  transform(phone: string, ...args: unknown[]): string {
     return phone.replace (/(.{2})/g, '$1 ').trim();
   }
 

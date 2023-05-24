@@ -1,0 +1,43 @@
+<p>consumer-liste works!</p>
+
+<div>
+    <table mat-table [dataSource]="datasource" *ngIf="!!datasource">
+
+            <ng-container matColumnDef ="civilite">
+                <th mat-header-cell *matHeaderCellDef  >Civilité</th>
+                <td mat-cell *matCellDef="let element">{{element.civility}}</td>
+            </ng-container>
+            <ng-container matColumnDef ="prenom">
+                <th mat-header-cell *matHeaderCellDef  >Prénom</th>
+                <td mat-cell *matCellDef="let element">{{element.firstname}}</td>
+            </ng-container>
+            <ng-container matColumnDef ="nom">
+                <th mat-header-cell *matHeaderCellDef  >Nom</th>
+                <td mat-cell *matCellDef="let element">{{element.lastname}}</td>
+            </ng-container>
+            <ng-container matColumnDef ="email">
+                <th mat-header-cell *matHeaderCellDef  >Email</th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
+            </ng-container>
+            <ng-container matColumnDef ="telephone">
+                <th mat-header-cell *matHeaderCellDef  >Téléphone</th>
+                <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button matTooltip="Supprimer" color="accent" aria-label="Ajouter une personne" 
+                    (click)="deleteSomeOne(element)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="éditer" routerLink="." aria-label="Tu modifie quelqu'un "
+                      (click)="changerLapersonne(element)">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </td>
+                </ng-container>
+            <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>
+            <tr mat-row *matRowDef ="let row; columns: displayedColumns;"></tr>
+     
+    </table>
+</div>

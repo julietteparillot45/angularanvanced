@@ -16,6 +16,13 @@
         <mat-icon>home</mat-icon>
       </a>
     </span>
+    <span>
+      <a mat-icon-button matTooltip="list"
+         [routerLink]="'/consumers-list'"
+         [routerLinkActive]="'is-active'">
+        <mat-icon>list</mat-icon>
+      </a>
+    </span>
   </mat-toolbar>
 </div>
 <router-outlet></router-outlet>
