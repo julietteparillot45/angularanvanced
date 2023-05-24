@@ -12,7 +12,8 @@ import {HelpComponent} from './component/help/help.component';
 import {HomeComponent} from './home/home.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JWTInterceptorService } from './common/jwtinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AuthenticationComponent,
     LoginComponent,
     HelpComponent,
-    HomeComponent
+    HomeComponent, 
+    
   ],
   imports: [
     BrowserModule,
@@ -34,9 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   exports: [
-    FormsModule
+    FormsModule, 
+    
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
