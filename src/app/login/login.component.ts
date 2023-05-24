@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "./authentication.service";
 import {Router} from "@angular/router";
+import { User } from './model/user';
 
 @Component({
   selector: 'crm-login',
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+  user:User | undefined;
   constructor(private authentService: AuthenticationService, private router: Router) {
     if (this.authentService.authenticated) {
       this.authentService.disconnect();
@@ -18,10 +19,10 @@ export class LoginComponent {
   }
 
   public loginForm: FormGroup = new FormGroup({
-    username: new FormControl('a', {
+    username: new FormControl('apside@email.com', {
       validators: [Validators.required, Validators.min(3)]
     }),
-    password: new FormControl('a', {
+    password: new FormControl('apside', {
       validators: [Validators.required, checkPassword]
     })
   });
@@ -32,13 +33,13 @@ export class LoginComponent {
       return;
     }
     console.log('submit', this.loginForm.value)
-    const res = this.authentService.authentUser(this.loginForm.value.login,
-      this.loginForm.value.password);
+    this.authentService.authentUser(this.loginForm.get('username')?.value,
+    this.loginForm.get('password')?.value).subscribe(user=> this.user = user);
 
-    if (res != null) {
+   if(!!this.user)
       this.router.navigateByUrl('/home');
-    }
-    console.log(res);
+  
+    console.log("POUAHHHHH " , this.user);
   }
 }
 
