@@ -1,0 +1,22 @@
+<form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field>
+      <mat-label for="username">Username</mat-label>
+      <input matInput type="text" name="username" id="username" formControlName="username">
+    </mat-form-field>
+    <crm-help [field]="loginForm.get('username')"
+              [messages]="{'required' : 'entrez votre login',
+                                'minlength': 'le login doit avoir 3 char mini'}"></crm-help>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label for="password">Password</mat-label>
+      <input matInput type="password" name="password" id="password" formControlName="password">
+    </mat-form-field>
+    <crm-help [field]="loginForm.get('password')"
+              [messages]="{'required' : 'entrez votre mdp'}"></crm-help>
+  </p>
+  <div>
+    <button mat-flat-button type="submit" [disabled]="!loginForm.valid" color="primary">Validate</button>
+  </div>
+</form>

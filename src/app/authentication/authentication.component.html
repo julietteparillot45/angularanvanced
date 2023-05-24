@@ -1,0 +1,22 @@
+<h1>
+  AUTHENTICATION
+</h1>
+<form #signupForm="ngForm" (ngSubmit)="registerUser(signupForm) ">
+  <div>
+    <label for="email">Email</label>
+    <input type="text"
+           name="email"
+           id="email"
+           [(ngModel)]="user"
+           required>
+    {{ user }}
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" ngModel="password">
+  </div>
+  <div>
+    <button type="submit">Sign Up</button>
+  </div>
+</form>
+
