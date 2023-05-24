@@ -14,6 +14,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JWTInterceptorService } from './common/jwtinterceptor.service';
+import { PhonePipe } from './common/phone.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { JWTInterceptorService } from './common/jwtinterceptor.service';
     AuthenticationComponent,
     LoginComponent,
     HelpComponent,
-    HomeComponent, 
+    HomeComponent,
+    PhonePipe, 
     
   ],
   imports: [

@@ -1,1 +1,4 @@
 <p>home works!</p>
+<!-- le param1 est une parametre qui peut etre envoyé au pipe on peut y passer autant qu'on veut  -->
+<input type="text" [ngModel]="phone | phone:'param1'" 
+(ngModelChange)="phone=$event;">
